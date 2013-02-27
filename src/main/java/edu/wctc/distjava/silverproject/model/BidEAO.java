@@ -29,4 +29,10 @@ public class BidEAO {
     public EntityManager getEntityManager() {
         return em;
     }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+    
+    
 }
