@@ -1,21 +1,25 @@
 package edu.wctc.distjava.silverproject.controller;
 
+import edu.wctc.distjava.silverproject.model.Bid;
+import edu.wctc.distjava.silverproject.model.BidEAO;
 import java.io.Serializable;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * A sample JSF Managed Bean
  * @author  jlombardo
  * @version 1.00
  */
-@ManagedBean(name = "sample")
-@ViewScoped
+@Named
+@SessionScoped
 public class SampleBean implements Serializable {
     // Incremement this with each structural class change
     private static final long serialVersionUID = 1L;
-    
-    private String message = "Hello From JSF Managed Bean";
+    @Inject
+    private BidEAO eao;
+    private String message = "Hello From CDI-JSF Managed Bean";
 
     /**
      * Creates a new instance of SampleBean
@@ -29,5 +33,10 @@ public class SampleBean implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    
+    public String getBidById(String id) {
+        Bid bid = eao.getBidById(new Integer(id));
+        return bid.toString();
     }
 }
