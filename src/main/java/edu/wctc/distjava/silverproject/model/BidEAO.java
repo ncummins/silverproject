@@ -1,19 +1,19 @@
 package edu.wctc.distjava.silverproject.model;
 
-import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.context.annotation.Scope;
 
 /**
  *
  * @author jlombardo
  */
 @Named
-@Stateless
+@Scope("session")
 public class BidEAO {
 
-    @PersistenceContext(unitName = "silverprojectPU")
+    @PersistenceContext
     private EntityManager em;
 
     public Bid getBidById(Object id) {
